@@ -1,10 +1,10 @@
-# Multi Lingua Playground
+# Multi Lang Playground
 
-A personal, local-first language learning app focused on Traditional Chinese (native) plus improving English (IELTS ~6.5) and Japanese (JLPT N4-N5).
+A personal language learning app focused on Traditional Chinese (native) plus improving English and Japanese.
 
 Built for quick use during work: news reading with translation, interactive practice, grammar explanations, and (planned) real-time YouTube live audio transcription.
 
-Currently powered by Qwen3-14B (quantized GGUF) running locally via llama.cpp.
+Currently powered by Open source llm module (such as HY-MT1.5-7B-Q4_K_M) (quantized GGUF) running locally via llama.cpp.
 
 ## Features (current & planned)
 
