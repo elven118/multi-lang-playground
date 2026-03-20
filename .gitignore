@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Models (huge files – don't commit!)
+models/*
+!models/.gitkeep   # optional: keep empty folder in git
+
+# Gradio / local runtime
+.gradio/
+*.log
+
+# macOS / Windows junk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.bak
+*.swp
+*~
+
+# Cache
+.cache/

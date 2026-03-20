@@ -1,0 +1,49 @@
+:root {
+  --color-card: #ffffff;
+  --color-border: #e5e7eb;
+  --color-text: #111827;
+  --color-text-soft: #6b7280;
+  --shadow-sm: 0 1px 6px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 20px rgba(0,0,0,0.08);
+  --skeleton-base: #e5e7eb;
+  --skeleton-shine: #f3f4f6;
+}
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.card { border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; background: var(--color-card); box-shadow: var(--shadow-sm); color: var(--color-text); transition: transform 120ms ease, box-shadow 120ms ease; }
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.img { height: 170px; background: linear-gradient(120deg, #eef2ff, #f8fafc); display: flex; align-items: center; justify-content: center; }
+.img img { width: 100%; height: 100%; object-fit: cover; }
+.img-placeholder { font-size: 12px; color: var(--color-text-soft); }
+.body { padding: 12px 14px 14px; }
+.source { font-size: 11px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-soft); }
+.title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.title a { text-decoration: none; color: var(--color-text); }
+.summary { font-size: 13px; line-height: 1.5; color: var(--color-text) !important; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.meta { margin-top: 8px; font-size: 11px; color: var(--color-text-soft) !important; }
+.empty { padding: 8px; color: var(--color-text-soft); }
+
+.line-by-line { display: flex; flex-direction: column; }
+.line-pair { background: var(--color-card); }
+.line { font-size: 14px; line-height: 1.6; }
+.line.original { color: var(--color-text) !important; }
+.line.translated { color: var(--color-text-soft) !important; }
+ruby { color: var(--color-text) !important; }
+ruby rt { font-size: 0.6em; color: var(--color-text-soft) !important; }
+
+.loading .img,
+.loading .line {
+  background: linear-gradient(90deg, var(--skeleton-base) 0%, var(--skeleton-shine) 50%, var(--skeleton-base) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+.loading .img { height: 170px; }
+.loading .line { height: 10px; border-radius: 6px; margin: 8px 0; }
+.loading .line.short { width: 40%; }
+.loading .line.medium { width: 70%; }
+.loading .line.long { width: 90%; }
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
