@@ -13,6 +13,13 @@ def _env_int(name, default):
     except (TypeError, ValueError):
         return default
 
+def _env_str(name, default=None):
+    value = os.getenv(name)
+    if value is None:
+        return default
+    value = str(value).strip()
+    return value if value else default
+
 def _repo_root():
     return Path(__file__).resolve().parents[4]
 
@@ -38,13 +45,16 @@ def _parse_fallbacks():
     return [part.strip() for part in raw.split(",") if part.strip()]
 
 def _init_llm(path, n_gpu_layers, n_ctx, n_threads, n_batch):
+    chat_format = _env_str("LLM_CHAT_FORMAT")
+    if chat_format and chat_format.lower() in {"auto", "default", "none"}:
+        chat_format = None
     return Llama(
         model_path=str(path),
         n_gpu_layers=n_gpu_layers,
         n_ctx=n_ctx,
         n_threads=n_threads,
         n_batch=n_batch,
-        chat_format="chatml",
+        chat_format=chat_format,
         verbose=False
     )
 
@@ -95,7 +105,7 @@ def load_model():
             ) from exc
     return _llm
 
-def generate(messages, max_tokens=512, temperature=0.7, stream=False):
+def generate(messages, max_tokens=4096, temperature=0.7, stream=False):
     llm = load_model()
     return llm.create_chat_completion(
         messages=messages,
@@ -103,4 +113,14 @@ def generate(messages, max_tokens=512, temperature=0.7, stream=False):
         temperature=temperature,
         top_p=0.9,
         stream=stream
+    )
+
+def generate_stream(messages, max_tokens=512, temperature=0.3):
+    llm = load_model()
+    return llm.create_chat_completion(
+        messages=messages,
+        max_tokens=max_tokens,
+        temperature=temperature,
+        top_p=0.9,
+        stream=True
     )

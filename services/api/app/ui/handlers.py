@@ -24,12 +24,6 @@ def collect_full(response):
     content = response["choices"][0]["message"]["content"]
     return content.strip()
 
-
-def strip_think_blocks(text):
-    cleaned = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL | re.IGNORECASE)
-    return cleaned.strip()
-
-
 def add_furigana(text):
     if not text or kakasi_factory is None:
         return html.escape(text)
@@ -83,8 +77,8 @@ def translate_text(text, target_lang, explain):
         target_lang=target_lang,
         explain=explain,
     )
-    response = generate(messages, max_tokens=600, temperature=0.5, stream=False)
-    return strip_think_blocks(collect_full(response))
+    response = generate(messages, max_tokens=4096, temperature=0.5, stream=False)
+    return collect_full(response)
 
 
 def split_urls(text):
@@ -283,7 +277,7 @@ def select_saved_item(selected_id, saved_entries, add_kana):
             if explain:
                 paired = ""
             else:
-                text = f"{item.get('title','')}\n\n{item.get('summary','')}"
+                text = f"{item.get('title','')}\n{item.get('summary','')}"
                 paired = format_line_by_line_html(text, translation, add_kana)
             return translation, paired
     return "", ""

@@ -36,3 +36,6 @@ ehthumbs.db
 
 # Cache
 .cache/
+
+# env
+.env

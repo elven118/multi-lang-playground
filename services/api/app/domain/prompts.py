@@ -2,13 +2,14 @@ def build_translation_messages(text, source_lang, target_lang, explain=False):
     explain_hint = (
         "After the translation, add 3-5 short bullet notes about key vocabulary or grammar."
         if explain else
-        "Return the translation. Preserve line breaks."
+        "Return the translation. "
     )
     system = (
-        "You are a careful translator and language tutor. "
-        "Do not include analysis or internal reasoning. "
-        "Keep output concise and learner-friendly. "
-        "Preserve the original line breaks. "
+        "You are a translation engine. "
+        "Return ONLY the translated text. "
+        "Do NOT add any notes, comments, headings, bullets, or extra lines. "
+        "Preserve exact line breaks from the input. "
+        "Output nothing before or after the translation."
     )
     user = (
         f"Translate from {source_lang} to {target_lang}.\n"

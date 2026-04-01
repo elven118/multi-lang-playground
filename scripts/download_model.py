@@ -3,10 +3,16 @@ from huggingface_hub import list_repo_files, hf_hub_download
 
 MODELS = {
     "qwen3.5": {
-        "repo_id": "unsloth/Qwen3.5-35B-A3B-GGUF", 
-        "filename": "Qwen3.5-35B-A3B-Q4_K_M.gguf", 
+        "repo_id": "bartowski/Qwen3.5-9B-Instruct-GGUF",
+        "filename": "Qwen3.5-9B-Instruct-Q4_K_M.gguf",
         "local_dir": "../models"
     },
+    # large models
+    # "qwen3.5": {
+    #     "repo_id": "unsloth/Qwen3.5-35B-A3B-GGUF", 
+    #     "filename": "Qwen3.5-35B-A3B-Q4_K_M.gguf", 
+    #     "local_dir": "../models"
+    # },
     "hunyuan": {
         "repo_id": "tencent/HY-MT1.5-7B-GGUF",
         "filename": "HY-MT1.5-7B-Q4_K_M.gguf", 
